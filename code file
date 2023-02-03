@@ -1,0 +1,35 @@
+from day_8_supports import logo
+print(logo)
+alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+start = True
+while start:
+    direction = input("Type Encode to encrypt or Type decode to decrypt \n").lower()
+    text = input("Enter the text you want to encode or decode! \n")
+    shift = int(input("Enter the number that you want to want to encrypt with \n"))
+    shift = (shift % 26)
+    def caesar(text, shift, direction):
+        if direction == 'encode':
+            encrypted_text = ""
+            for char in text:
+                if char in alphabet:
+                    position = alphabet.index(char)
+                    new_letter =  alphabet[position + shift]
+                    encrypted_text += new_letter
+                else:
+                    encrypted_text += char
+            print(f"The encrypted text is {encrypted_text}")
+        if direction == 'decode':
+            plain_text = ""
+            for char in text:
+                if char in alphabet:
+                    position = alphabet.index(char)
+                    new_letter =  alphabet[position - shift] 
+                    plain_text += new_letter
+                else:
+                    plain_text += char
+            print(f"Your decoded text is {plain_text}")
+    caesar(text=text, shift= shift, direction = direction)
+    start = input("do you want to restart ? ")
+    if start == 'no':
+        print("Goodbye! ")
+        start = False
